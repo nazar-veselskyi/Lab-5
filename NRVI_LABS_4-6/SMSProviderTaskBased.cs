@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace NRVI_LABS_4_6 {
+namespace NazarVeselskyi.Threading {
     class SMSProviderTaskBased: SmsProviderBase {
         private Task _messagesTask;
 

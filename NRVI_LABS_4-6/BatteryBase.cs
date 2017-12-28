@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Timers;
 
-namespace NRVI_LABS_4_6 {
+namespace NazarVeselskyi.Threading {
     public abstract class BatteryBase {
         public int Charge { get; set; }
         private System.Timers.Timer _dischargeTimer;

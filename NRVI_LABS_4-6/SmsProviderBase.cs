@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Timers;
 
-namespace NRVI_LABS_4_6 {
+namespace NazarVeselskyi.Threading {
     public abstract class SmsProviderBase {
         public delegate void SMSReceivedDelegate(Message message);
         public event SMSReceivedDelegate SMSReceived;

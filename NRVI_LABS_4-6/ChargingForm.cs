@@ -4,7 +4,7 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
-namespace NRVI_LABS_4_6
+namespace NazarVeselskyi.Threading
 {
     public enum FormattingType {
         And,

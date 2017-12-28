@@ -1,4 +1,4 @@
-﻿namespace NRVI_LABS_4_6 {
+﻿namespace NazarVeselskyi.Threading {
     public class Mobile {
         private readonly SmsProviderBase _smsProvider;
         public Storage Storage { get; set; }

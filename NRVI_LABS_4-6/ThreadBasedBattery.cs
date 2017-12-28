@@ -1,6 +1,6 @@
 ﻿using System.Threading;
 
-namespace NRVI_LABS_4_6 {
+namespace NazarVeselskyi.Threading {
     public class ThreadBasedBattery: BatteryBase {
         public ThreadBasedBattery() {
             Thread thread = new Thread(StartDischargeTimer);

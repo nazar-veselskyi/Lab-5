@@ -1,6 +1,6 @@
 ﻿using System.Threading;
 
-namespace NRVI_LABS_4_6 {
+namespace NazarVeselskyi.Threading {
     public class SMSProviderThreadBased: SmsProviderBase {
         private Thread _messagesThread;
 

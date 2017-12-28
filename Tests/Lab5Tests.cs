@@ -1,6 +1,6 @@
 ﻿using System.Threading;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using NRVI_LABS_4_6;
+using NazarVeselskyi.Threading;
 
 namespace Tests {
     [TestClass]
