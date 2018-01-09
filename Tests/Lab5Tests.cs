@@ -5,38 +5,36 @@ using NazarVeselskyi.Threading;
 namespace Tests {
     [TestClass]
     public class Lab5Tests {
+
         [TestMethod]
-        public void TestChargeBounds() {
+        public void TestTaskBasedChargeTopBoundsInOneUpdate() {
             BatteryBase battery = new TaskBasedBattery();
 
             battery.UpdateCharge(101);
             Assert.IsTrue(battery.Charge <= 100 && battery.Charge >= 0);
+        }
+
+        [TestMethod]
+        public void TestTaskBasedChargeBottomBoundsInOneUpdate() {
+            BatteryBase battery = new TaskBasedBattery();
 
             battery.UpdateCharge(-101);
             Assert.IsTrue(battery.Charge <= 100 && battery.Charge >= 0);
+        }
+
+        [TestMethod]
+        public void TestTaskBasedChargeTopBoundsInManyUpdates() {
+            BatteryBase battery = new TaskBasedBattery();
 
             for (int i = 0; i < 101; i++) {
                 battery.UpdateCharge(1);
             }
             Assert.IsTrue(battery.Charge <= 100 && battery.Charge >= 0);
+        }
 
-            for (int i = 0; i < 101; i++) {
-                battery.UpdateCharge(-1);
-            }
-            Assert.IsTrue(battery.Charge <= 100 && battery.Charge >= 0);
-
-            battery = new ThreadBasedBattery();
-
-            battery.UpdateCharge(101);
-            Assert.IsTrue(battery.Charge <= 100 && battery.Charge >= 0);
-
-            battery.UpdateCharge(-101);
-            Assert.IsTrue(battery.Charge <= 100 && battery.Charge >= 0);
-
-            for (int i = 0; i < 101; i++) {
-                battery.UpdateCharge(1);
-            }
-            Assert.IsTrue(battery.Charge <= 100 && battery.Charge >= 0);
+        [TestMethod]
+        public void TestTaskBasedChargeBottomBoundsInManyUpdates() {
+            BatteryBase battery = new TaskBasedBattery();
 
             for (int i = 0; i < 101; i++) {
                 battery.UpdateCharge(-1);
@@ -45,54 +43,72 @@ namespace Tests {
         }
 
         [TestMethod]
-        public void TestChargingDischargingThreadBased() {
+        public void TestThreadBasedChargeTopBoundsInOneUpdate() {
             BatteryBase battery = new ThreadBasedBattery();
-            int prevCharge = battery.Charge;
+
+            battery.UpdateCharge(101);
+            Assert.IsTrue(battery.Charge <= 100 && battery.Charge >= 0);
+        }
+
+        [TestMethod]
+        public void TestThreadBasedChargeBottomBoundsInOneUpdate() {
+            BatteryBase battery = new ThreadBasedBattery();
+
+            battery.UpdateCharge(-101);
+            Assert.IsTrue(battery.Charge <= 100 && battery.Charge >= 0);
+        }
+
+        [TestMethod]
+        public void TestThreadBasedChargeTopBoundsInManyUpdates() {
+            BatteryBase battery = new ThreadBasedBattery();
+
+            for (int i = 0; i < 101; i++) {
+                battery.UpdateCharge(1);
+            }
+            Assert.IsTrue(battery.Charge <= 100 && battery.Charge >= 0);
+        }
+
+        [TestMethod]
+        public void TestThreadBasedChargeBottomBoundsInManyUpdates() {
+            BatteryBase battery = new ThreadBasedBattery();
+
+            for (int i = 0; i < 101; i++) {
+                battery.UpdateCharge(-1);
+            }
+            Assert.IsTrue(battery.Charge <= 100 && battery.Charge >= 0);
+        }
+
+        [TestMethod]
+        public void TestDischargingThreadBased() {
+            BatteryBase battery = new ThreadBasedBattery();
             int startCharge = battery.Charge;
-
-            for (int i = 0; i < 10; i++) {
-                Thread.Sleep(1000);
-                Assert.IsTrue(battery.Charge <= prevCharge);
-                prevCharge = battery.Charge;
-            }
-
+            Thread.Sleep(3000);
             Assert.IsTrue(battery.Charge < startCharge);
+        }
 
+        [TestMethod]
+        public void TestChargingThreadBased() {
+            BatteryBase battery = new ThreadBasedBattery();
+            int startCharge = battery.Charge;
             battery.StartCharging();
-            startCharge = battery.Charge;
-
-            for (int i = 0; i < 10; i++) {
-                Thread.Sleep(1000);
-                Assert.IsTrue(battery.Charge >= prevCharge);
-                prevCharge = battery.Charge;
-            }
-
+            Thread.Sleep(3000);
             Assert.IsTrue(battery.Charge > startCharge);
         }
 
         [TestMethod]
-        public void TestChargingDischargingTaskBased() {
+        public void TestDischargingTaskBased() {
             BatteryBase battery = new TaskBasedBattery();
-            int prevCharge = battery.Charge;
             int startCharge = battery.Charge;
-
-            for (int i = 0; i < 10; i++) {
-                Thread.Sleep(1000);
-                Assert.IsTrue(battery.Charge <= prevCharge);
-                prevCharge = battery.Charge;
-            }
-
+            Thread.Sleep(3000);
             Assert.IsTrue(battery.Charge < startCharge);
+        }
 
+        [TestMethod]
+        public void TestChargingTaskBased() {
+            BatteryBase battery = new TaskBasedBattery();
+            int startCharge = battery.Charge;
             battery.StartCharging();
-            startCharge = battery.Charge;
-
-            for (int i = 0; i < 10; i++) {
-                Thread.Sleep(1000);
-                Assert.IsTrue(battery.Charge >= prevCharge);
-                prevCharge = battery.Charge;
-            }
-
+            Thread.Sleep(3000);
             Assert.IsTrue(battery.Charge > startCharge);
         }
     }

@@ -17,14 +17,12 @@ namespace NazarVeselskyi.Threading {
 
         private void RaiseSMSAddedEvent(Message message) {
             var handler = SMSAdded;
-            if (handler != null)
-                handler(message);
+            handler?.Invoke(message);
         }
 
         private void RaiseSMSRemovedEvent(Message message) {
             var handler = SMSRemoved;
-            if (handler != null)
-                handler(message);
+            handler?.Invoke(message);
         }
 
         public void AddMessage(Message message) {

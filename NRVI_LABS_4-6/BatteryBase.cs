@@ -29,8 +29,7 @@ namespace NazarVeselskyi.Threading {
 
         private void RaiseChargeChangedEvent(int newCharge) {
             var handler = OnChargeChanged;
-            if (handler != null)
-                handler(newCharge);
+            handler?.Invoke(newCharge);
         }
 
         private void DoDischarge(object obj, ElapsedEventArgs args) {
